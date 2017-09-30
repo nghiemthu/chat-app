@@ -16,9 +16,9 @@ mongoose.Promise = require('bluebird');
 
 //seedDB();
 
-aapp.get('/index', function(req, res){
+app.get('/index', function(req, res){
   res.send("Hello!");
-}
+});
 
 app.get('/chatrooms', function(req, res){
    Chatroom.find({}).populate("messages").populate("members").exec(function(err, chatroom) {
