@@ -11,7 +11,7 @@ var Chatroom  = require("./models/chatroom"),
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(require('body-parser').urlencoded({ extended: true }));
 
-mongoose.connect("mongodb://localhost/voting-app", { useMongoClient: true });
+mongoose.connect("mongodb://thunghiem:12345@ds159254.mlab.com:59254/chat-app", { useMongoClient: true });
 mongoose.Promise = require('bluebird');
 
 //seedDB();
