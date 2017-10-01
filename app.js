@@ -95,7 +95,8 @@ app.post('/chatrooms/:id', function(req, res){
       Message.create({}, function(err, message){
         if(err) console.log (err);
         else {
-
+          if (!chatroom) return res.send("Cannot find chatroom");
+          
           message.text = req.body.text;
           message.date = Date.now();
           message.author = req.body.user;
