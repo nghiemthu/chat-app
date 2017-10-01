@@ -117,6 +117,10 @@ app.post('/chatrooms/:id', function(req, res){
   })
 });
 
+app.get('/', function(req, res){
+  res.send("Welcome!");
+});
+
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log('server started');
 })
