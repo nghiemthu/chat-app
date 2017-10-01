@@ -9,12 +9,12 @@ var Chatroom  = require("./models/chatroom"),
     User      = require("./models/user");
 
 app.use(require('body-parser').urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(require('body-parser').json());
 
 mongoose.connect("mongodb://thunghiem:12345@ds159254.mlab.com:59254/chat-app", { useMongoClient: true });
 mongoose.Promise = require('bluebird');
 
-seedDB();
+//seedDB();
 
 app.get('/index', function(req, res){
   res.send("Hello!");
