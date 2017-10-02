@@ -5,7 +5,9 @@ var User      = require("./models/user");
 
 var data = [
   {
-    members: [{ name: 'thunghiem', avatar: 'default' }, { name: 'peter', avatar: 'default' }],
+    members: [
+      { name: 'thunghiem', avatar: 'default' }, 
+      { name: 'peter', avatar: 'http://i.dailymail.co.uk/i/pix/2017/04/20/13/3F6B966D00000578-4428630-image-m-80_1492690622006.jpg' }],
     messages: [
       {
         text: 'Hello',
@@ -22,7 +24,8 @@ var data = [
       },
     ]
   }, {
-    members: [{ name: 'thunghiem', avatar: 'default' }, { name: 'alex', avatar: 'default' }],
+    members: [{ name: 'thunghiem', avatar: 'default' }, 
+    { name: 'alex', avatar: 'http://blog.chemistry.com/wp-content/uploads/2012/09/man-smiling.jpg' }],
     messages: [
       {
         text: `What's up?`,
