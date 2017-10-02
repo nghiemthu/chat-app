@@ -18,11 +18,6 @@ var server = app.listen(process.env.PORT, process.env.IP, function(){
 
 var io = require('socket.io').listen(server);
 
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 20); 
-});
-
 app.use(require('body-parser').urlencoded({ extended: false }));
 app.use(require('body-parser').json());
 
