@@ -29,15 +29,15 @@ var data = [
     messages: [
       {
         text: `What's up?`,
-        date: Date.now(),
+        date: new Date('09-01-2017'),
         author: 'thunghiem'
       }, {
         text: 'Hi! How you doing?',
-        date: Date.now(),
+        date: new Date('09-01-2017'),
         author: 'alex'
       }, {
         text: 'Good!',
-        date: Date.now(),
+        date: new Date('09-01-2017'),
         author: 'thunghiem'
       },
     ]
