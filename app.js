@@ -24,7 +24,7 @@ app.use(require('body-parser').json());
 mongoose.connect("mongodb://thunghiem:12345@ds159254.mlab.com:59254/chat-app", { useMongoClient: true });
 mongoose.Promise = require('bluebird');
 
-seedDB();
+//seedDB();
 
 app.use("", routers);
 
