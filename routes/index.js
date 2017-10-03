@@ -17,20 +17,23 @@ router.get('/chatrooms', function(req, res){
 });
 
 router.get('/chatrooms/:name', function(req, res){
-   Chatroom.find({})
-    .populate("messages").populate("members")
-    .exec(function(err, _chatrooms) {
-      if (err) return res.send(err);
-      console.log(req.params.name);
-      
-      var chatrooms = _chatrooms.filter(function(chatroom){
-        return chatroom.members.some(function(member){
-          return member.name == req.params.name;
+   User.findOneAndUpdate({name: req.params.name}, {name: req.params.name, avatar: 'default'}, { upsert: true}, function(err, _member){
+     if (err) console.log(err);
+     Chatroom.find({})
+      .populate("messages").populate("members")
+      .exec(function(err, _chatrooms) {
+        if (err) return res.send(err);
+        console.log(req.params.name);
+        
+        var chatrooms = _chatrooms.filter(function(chatroom){
+          return chatroom.members.some(function(member){
+            return member.name == req.params.name;
+          });
         });
-      });
-      
-      return res.json(chatrooms);
-    });
+        
+        return res.json(chatrooms);
+      }); 
+   });
 });
 
 router.get('/chatrooms/searchById/:id', function(req, res){
@@ -44,7 +47,7 @@ router.get('/chatrooms/searchById/:id', function(req, res){
 });
 
 router.get('/users/:name', function(req, res){
-   Chatroom.findOne({'name': req.params.name}).exec(function(err, user) {
+   User.findOne({'name': req.params.name}).exec(function(err, user) {
       if (err) return res.send(err);
       
       return res.json(user);

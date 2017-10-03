@@ -30,7 +30,7 @@ mongoose.Promise = require('bluebird');
 // Message.remove({}, function(err){
 //   if (err) console.log(err);
 // });
-// seedDB();
+seedDB();
 
 app.use("", routers);
 
