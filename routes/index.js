@@ -43,6 +43,22 @@ router.get('/chatrooms/searchById/:id', function(req, res){
     });
 });
 
+router.get('/users/:name', function(req, res){
+   Chatroom.findOne({'name': req.params.name}).exec(function(err, user) {
+      if (err) return res.send(err);
+      
+      return res.json(user);
+    });
+});
+
+router.get('/users', function(req, res){
+   User.find({}).exec(function(err, users) {
+      if (err) return res.send(err);
+      
+      return res.json(users);
+    });
+});
+
 router.post('/chatrooms', function(req, res){
   Chatroom.create({}, function(err, chatroom){
     if(err) console.log (err);

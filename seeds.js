@@ -58,11 +58,10 @@ function seedDB(){
         if (err) { console.log(err); return; }
   
         item.members.map(function(member, index){
-          User.create(member, function(err, _member){
+          User.findOneAndUpdate({name: member.name}, {name: member.name, avatar: member.avatar}, { upsert: true}, function(err, _member){
             if (err)
               console.log(err);
             else {
-              
               chatroom.members.push(_member);
               
               if (index == item.members.length-1) {
