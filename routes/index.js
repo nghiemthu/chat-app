@@ -16,6 +16,17 @@ router.get('/chatrooms', function(req, res){
    });
 });
 
+router.get('/chatrooms/searchById/:id', function(req, res){
+   Chatroom.findById(req.params.id)
+    .populate("messages").populate("members")
+    .exec(function(err, _chatrooms) {
+      if (err) return res.send(err);
+      
+      return res.json(_chatrooms);
+    });
+});
+
+
 router.get('/chatrooms/:name/*', function(req, res){
   var newUser = (req.originalUrl.substring(12 + req.params.name.length)) ? 
                 {name: req.params.name, avatar: req.originalUrl.substring(12 + req.params.name.length)} 
@@ -37,16 +48,6 @@ router.get('/chatrooms/:name/*', function(req, res){
         return res.json(chatrooms);
       }); 
    });
-});
-
-router.get('/chatrooms/searchById/:id', function(req, res){
-   Chatroom.findById(req.params.id)
-    .populate("messages").populate("members")
-    .exec(function(err, _chatrooms) {
-      if (err) return res.send(err);
-      
-      return res.json(_chatrooms);
-    });
 });
 
 router.get('/users/:name', function(req, res){
