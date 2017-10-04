@@ -17,7 +17,7 @@ router.get('/chatrooms', function(req, res){
 });
 
 router.get('/chatrooms/:name', function(req, res){
-   User.findOneAndUpdate({name: req.params.name}, {name: req.params.name, avatar: 'default'}, { upsert: true}, function(err, _member){
+   User.findOneAndUpdate({name: req.params.name}, {name: req.params.name}, { upsert: true}, function(err, _member){
      if (err) console.log(err);
      Chatroom.find({})
       .populate("messages").populate("members")
