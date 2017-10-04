@@ -16,14 +16,17 @@ router.get('/chatrooms', function(req, res){
    });
 });
 
-router.get('/chatrooms/:name', function(req, res){
-   User.findOneAndUpdate({name: req.params.name}, {name: req.params.name}, { upsert: true}, function(err, _member){
+router.get('/chatrooms/:name/*', function(req, res){
+  var newUser = (req.originalUrl.substring(12 + req.params.name.length)) ? 
+                {name: req.params.name, avatar: req.originalUrl.substring(12 + req.params.name.length)} 
+                : {name: req.params.name};
+   User.findOneAndUpdate({name: req.params.name}, newUser, { upsert: true}, function(err, _member){
      if (err) console.log(err);
      Chatroom.find({})
       .populate("messages").populate("members")
       .exec(function(err, _chatrooms) {
         if (err) return res.send(err);
-        console.log(req.params.name);
+        //console.log(req.originalUrl.substring(12 + req.params.name.length));
         
         var chatrooms = _chatrooms.filter(function(chatroom){
           return chatroom.members.some(function(member){
